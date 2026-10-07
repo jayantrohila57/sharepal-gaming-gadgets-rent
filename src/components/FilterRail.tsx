@@ -2,7 +2,8 @@
 
 import { Smile } from "lucide-react";
 import type { GamingSubcategory } from "@/types/product";
-import type { ProductFilterId } from "@/lib/product-filters";
+import type { Product } from "@/types/product";
+import { filterProducts, type ProductFilterId } from "@/lib/product-filters";
 import { useProductFilter } from "@/context/ProductFilterContext";
 import { SharePalImage } from "@/components/SharePalImage";
 
@@ -32,11 +33,15 @@ function pickSubcategories(items: GamingSubcategory[]): GamingSubcategory[] {
 
 interface FilterRailProps {
   subcategories: GamingSubcategory[];
+  products: Product[];
 }
 
-export function FilterRail({ subcategories }: FilterRailProps) {
+export function FilterRail({ subcategories, products }: FilterRailProps) {
   const { activeFilter, setActiveFilter } = useProductFilter();
-  const tiles = pickSubcategories(subcategories);
+  const tiles = pickSubcategories(subcategories).filter((tile) => {
+    const filterId = tile.sc_name as ProductFilterId;
+    return filterProducts(products, filterId).length > 0;
+  });
 
   const tileClass = (id: ProductFilterId) =>
     `flex flex-col items-center gap-1 rounded-xl p-2 transition ${

@@ -33,7 +33,7 @@ export default function GamingGadgetsPage() {
       <CategoryTabs />
       <main className="min-h-screen bg-[#F3F4F6] pb-24">
         <div className="mx-auto flex max-w-[1400px] gap-4 px-4 py-6 md:px-6">
-          <FilterRail subcategories={subcategories} />
+          <FilterRail subcategories={subcategories} products={products} />
           <div className="min-w-0 flex-1 space-y-8">
             <HeroBanner />
             <ProductGridSection products={products} />

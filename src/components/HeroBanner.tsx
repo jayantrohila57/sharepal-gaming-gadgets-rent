@@ -21,10 +21,10 @@ export function HeroBanner() {
       <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-between px-2 md:px-6">
         <div className="relative h-28 w-28 shrink-0 md:h-40 md:w-40">
           <SharePalImage
-            src="https://images.sharepal.in/categories/gaming-consoles/xbox/xbox-series-s/xbox-series-s-on-rent-sharepal-1.webp"
-            alt=""
+            src="https://images.sharepal.in/sub-category-card/xbox-console-on-rent-sharepal.webp"
+            alt="Xbox console on rent"
             fill
-            className="object-contain object-left"
+            className="object-contain object-left drop-shadow-lg"
             sizes="160px"
           />
         </div>
