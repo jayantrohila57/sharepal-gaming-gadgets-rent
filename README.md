@@ -10,7 +10,7 @@ Pixel-close front-end recreation of [SharePal’s Bangalore gaming gadgets renta
 
 - [Next.js](https://nextjs.org/) 16 (App Router)
 - TypeScript
-- Tailwind CSS v4
+- Tailwind CSS v4 via `@tailwindcss/postcss` (`postcss.config.mjs` + `@import "tailwindcss"` in `globals.css`)
 - [Lucide](https://lucide.dev/) icons
 
 ## Getting started
@@ -54,7 +54,7 @@ npm start
 ## Rental pricing logic
 
 - User selects **delivery** and **pickup** dates in the modal.
-- **Chargeable days** = calendar span minus delivery and pickup days (not charged), matching SharePal’s “we don’t charge you for delivery and pickup days” copy.
+- **Chargeable days** = only the calendar days *between* delivery and pickup (delivery and pickup days are free). Example: deliver 10 Oct, pickup 14 Oct → 3 chargeable days (11–13).
 - Displayed price = `per_day_rent × chargeable days` (minimum one chargeable day required to continue).
 
 ## Small UX improvements (same design language)
