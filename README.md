@@ -2,7 +2,7 @@
 
 Pixel-close front-end recreation of [SharePal’s Bangalore gaming gadgets rental page](https://sharepal.in/bangalore/gaming-gadgets-on-rent) for an Internshala assignment.
 
-**Live demo:** _(add your Vercel deployment URL after deploy)_
+**Live demo:** https://sharepal-gaming-gadgets-rent.vercel.app/bangalore/gaming-gadgets-on-rent
 
 **Original reference:** https://sharepal.in/bangalore/gaming-gadgets-on-rent
 
