@@ -1,9 +1,9 @@
-import Image from "next/image";
+import { SharePalImage } from "@/components/SharePalImage";
 
 export function HeroBanner() {
   return (
     <section
-      className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#5b21b6] via-[#4B1E8F] to-[#312e81] px-6 py-8 text-white md:px-10 md:py-10"
+      className="relative min-h-[200px] overflow-hidden rounded-2xl bg-gradient-to-r from-[#5b21b6] via-[#4B1E8F] to-[#312e81] px-6 py-8 text-white md:min-h-[240px] md:px-10 md:py-10"
     >
       <div className="relative z-10 mx-auto max-w-2xl text-center">
         <h1 className="text-2xl font-bold tracking-tight md:text-4xl">Gaming Consoles</h1>
@@ -18,9 +18,9 @@ export function HeroBanner() {
           <span>Meta VR</span>
         </div>
       </div>
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-between px-2 opacity-90 md:px-6">
-        <div className="relative h-28 w-28 md:h-40 md:w-40">
-          <Image
+      <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-between px-2 md:px-6">
+        <div className="relative h-28 w-28 shrink-0 md:h-40 md:w-40">
+          <SharePalImage
             src="https://images.sharepal.in/categories/gaming-consoles/xbox/xbox-series-s/xbox-series-s-on-rent-sharepal-1.webp"
             alt=""
             fill
@@ -28,8 +28,8 @@ export function HeroBanner() {
             sizes="160px"
           />
         </div>
-        <div className="relative h-32 w-32 md:h-44 md:w-44">
-          <Image
+        <div className="relative h-32 w-32 shrink-0 md:h-44 md:w-44">
+          <SharePalImage
             src="https://images.sharepal.in/categories/gaming-consoles/ps5/ps5-with-1-controller/ps5-console-with-1-controller-on-rent-sharepal-1.webp"
             alt=""
             fill

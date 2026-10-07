@@ -14,6 +14,7 @@ import { DateModal } from "@/components/DateModal";
 import { StickyDatePill } from "@/components/StickyDatePill";
 import { ChatWidget } from "@/components/ChatWidget";
 import { RentalDatesProvider } from "@/context/RentalDatesContext";
+import { ProductFilterProvider } from "@/context/ProductFilterContext";
 
 const { products } = productsData as ProductsData;
 const subcategories = subcategoriesData as GamingSubcategory[];
@@ -27,6 +28,7 @@ export const metadata = {
 export default function GamingGadgetsPage() {
   return (
     <RentalDatesProvider>
+      <ProductFilterProvider>
       <Header />
       <CategoryTabs />
       <main className="min-h-screen bg-[#F3F4F6] pb-24">
@@ -49,6 +51,7 @@ export default function GamingGadgetsPage() {
       <DateModal />
       <StickyDatePill />
       <ChatWidget />
+      </ProductFilterProvider>
     </RentalDatesProvider>
   );
 }

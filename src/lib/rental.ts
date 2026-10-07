@@ -9,11 +9,14 @@ export function daysBetween(start: Date, end: Date): number {
   return Math.round(ms / (1000 * 60 * 60 * 24));
 }
 
-/** SharePal does not charge for delivery or pickup days. */
+/**
+ * SharePal does not charge for delivery or pickup days — only the calendar days
+ * strictly between delivery and pickup (e.g. deliver 10 Oct, pickup 14 Oct → 3 days).
+ */
 export function getChargeableDays(delivery: Date, pickup: Date): number {
   const span = daysBetween(delivery, pickup);
   if (span < 2) return 0;
-  return span - 2;
+  return span - 1;
 }
 
 export function formatDisplayDate(date: Date): string {
@@ -32,7 +35,6 @@ export function formatShortDate(date: Date): string {
 }
 
 export function calculateRentalPrice(perDayRent: number, chargeableDays: number): number {
-  if (chargeableDays <= 0) return perDayRent;
   return Math.round(perDayRent * chargeableDays);
 }
 

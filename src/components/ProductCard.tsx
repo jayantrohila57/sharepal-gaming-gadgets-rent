@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { Plus } from "lucide-react";
 import type { Product } from "@/types/product";
 import { useRentalDates } from "@/context/RentalDatesContext";
 import { calculateRentalPrice } from "@/lib/rental";
+import { SharePalImage } from "@/components/SharePalImage";
 
 function tagStyles(tag: string): string {
   if (tag === "Trending") return "border-orange-400 text-orange-500 bg-orange-50";
@@ -15,7 +15,7 @@ function tagStyles(tag: string): string {
 
 export function ProductCard({ product }: { product: Product }) {
   const { hasValidDates, chargeableDays, setModalOpen } = useRentalDates();
-  const price = calculateRentalPrice(product.per_day_rent, chargeableDays);
+  const total = calculateRentalPrice(product.per_day_rent, chargeableDays);
 
   return (
     <article
@@ -28,8 +28,8 @@ export function ProductCard({ product }: { product: Product }) {
           {product.tag}
         </span>
       ) : null}
-      <div className="relative mx-auto mb-3 aspect-square w-full max-w-[200px]">
-        <Image
+      <div className="relative mx-auto mb-3 aspect-square w-full max-w-[200px] overflow-hidden">
+        <SharePalImage
           src={product.image}
           alt={product.name}
           fill
@@ -41,24 +41,21 @@ export function ProductCard({ product }: { product: Product }) {
         {product.name}
       </h3>
       <div className="mt-auto">
-        <p className="text-[11px] text-gray-500">Select Dates to view price</p>
-        <div className="mt-1 flex items-end justify-between gap-2">
-          {hasValidDates ? (
-            <p className="text-lg font-bold text-gray-900">
-              ₹ {price.toLocaleString("en-IN")}
-              <span className="text-xs font-normal text-gray-500"> /total</span>
-            </p>
-          ) : (
-            <p className="text-lg font-bold text-gray-900">
-              ₹{" "}
-              <span
-                className="select-none blur-[6px]"
-                aria-hidden
-              >
-                {Math.round(product.per_day_rent * 3)}
-              </span>
-            </p>
-          )}
+        {!hasValidDates ? (
+          <>
+            <p className="text-[11px] text-gray-500">Select Dates to view price</p>
+            <div className="mt-2 h-7 w-24 rounded-md bg-gray-200/80 blur-sm" aria-hidden />
+          </>
+        ) : (
+          <p className="text-sm font-semibold text-gray-900">
+            ₹{product.per_day_rent.toLocaleString("en-IN")}
+            <span className="font-normal text-gray-500">/day</span>
+            <span className="mx-1 text-gray-300">·</span>
+            ₹{total.toLocaleString("en-IN")}
+            <span className="font-normal text-gray-500"> total</span>
+          </p>
+        )}
+        <div className="mt-2 flex items-end justify-end">
           <button
             type="button"
             onClick={() => !hasValidDates && setModalOpen(true)}
